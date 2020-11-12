@@ -1,7 +1,10 @@
 <?php
-// génére un econtance chemin vers index <div class="php"
-define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT8FILENAME'])).
-die(ROOT);
+// génére un econtance chemin vers index 
+define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
+
+require_once(ROOT.'app/Model.php');
+require_once(ROOT.'app/Controller.php');
+
 // on  sépare les paramétres
 $params=explode('/',$_GET['p']);
 
@@ -11,12 +14,16 @@ if($params[0] != ""){
 
     $action = isset($params[1]) ? $params[1] : 'index';
 
-    require_once(ROOT.'controlers/'.$controller.'.php');
+    require_once(ROOT.'controller/'.$controller.'.php');
 
     $controller = new $controller();
-
-    $controller->$action();
-
+    
+    if(method_exists($controller, $action)){
+        $controller->$action();
+    }else{
+        http_response_code(404);
+        echo "La page demandée n'existe pas";
+    }
 }else{
 
 }

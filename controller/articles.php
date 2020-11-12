@@ -1,7 +1,8 @@
 <?php
 
-class Articles{
+class Articles extends Controller{
     public function index(){
-        echo "accueil";
+        $this ->laodModel("Article");
+        echo "accueil kjkjkggljgljkghjh hgjljkh";
     }
 }
