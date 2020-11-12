@@ -3,6 +3,8 @@
 class Articles extends Controller{
     public function index(){
         $this ->laodModel("Article");
-        echo "accueil kjkjkggljgljkghjh hgjljkh";
+        $articles = $this->Article->getAll();
+
+        $this->render('index', ['articles' => $articles]);
     }
 }
