@@ -1,13 +1,13 @@
 <?php
 abstract class Controller{
     public function laodModel(string $model){
-    require_once(ROOT.'modeles/'.$model.'.php');
+    require_once(ROOT.'/modeles/'.$model.'.php');
     $this->$model=new $model();
 
     }
     public function render(string $fichier, array $data =[]){
         extract(($data));
         
-        require_once(ROOT.'views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
+        require_once(ROOT.'/views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
     }
 }

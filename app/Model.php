@@ -35,8 +35,14 @@ abstract class Model{
         return $query->fetchAll();
         var_dump($query);
     }
+    public function find($id){
+        $sql ="SELECT * FROM ".$this->table ." where id= " .$id;
+        $query =$this->_connexion->prepare($sql);
+        $query->execute();
+        return $query->fetch();
+    }
     public function getOne(){
-        $sql ="SELECT * FROM ".$this->table ."where id=" .$this->id;
+        $sql ="SELECT * FROM ".$this->table ." where id=" .$this->id;
         $query =$this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetch();
